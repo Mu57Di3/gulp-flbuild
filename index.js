@@ -62,8 +62,14 @@ module.exports = function (opt){
         req.push('-output "'+opt.output+'"');
 
         req = req.join(' ');
-        var res = exec(req, {silent:true}).output;
-        console.log(res);
+        var res = exec(req, {silent:true});
+
+        if (res.code==0){
+            console.log(res.output);
+        } else {
+            return cb(new PluginError(PLUGIN_NAME, "Project compile fail:\n"+res.output));
+        }
+
 
         var outFile = new  File({
              cwd: "/",

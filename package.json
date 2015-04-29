@@ -1,8 +1,12 @@
 {
   "name": "gulp-flbuild",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Gulp plugin for build Adobe Flash projects.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mu57Di3/gulp-flbuild"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
