@@ -1,6 +1,6 @@
 {
   "name": "gulp-flbuild",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Gulp plugin for build Adobe Flash projects.",
   "main": "index.js",
   "repository": {
