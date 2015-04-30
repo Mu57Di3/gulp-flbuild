@@ -73,7 +73,7 @@ module.exports = function (opt){
 
         var outFile = new  File({
              cwd: "/",
-             base: path.join(opt.PROJECT_HOME,'/out'),
+             base: path.dirname(opt.output),
              path: opt.output,
              contents: fs.readFileSync(opt.output)
          });
