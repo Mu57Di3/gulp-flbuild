@@ -22,6 +22,7 @@
     "gulp-util": "*",
     "shelljs": "*",
     "through2": "*",
-    "vinyl": "*"
+    "vinyl": "*",
+    "flex-sdk":"*"
   }
 }
