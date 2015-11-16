@@ -1,6 +1,7 @@
 /**
  * Плагин для Gulp компилирующий flash
  * Created by Mu57Di3 on 27.04.2015.
+ * Modified by Raidnew 16.11.2015
  */
 
 'use strict';
@@ -12,6 +13,7 @@ var gutil   = require('gulp-util');
 var fs      = require('fs');
 var path    = require('path');
 var File    = require('vinyl');
+var flexsdk = require('flex-sdk');
 require('shelljs/global');
 
 var PluginError = gutil.PluginError;
@@ -22,17 +24,22 @@ module.exports = function (opt){
         if (file.isNull()) return cb(null, file);
         if (file.isStream()) return cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
 
-
         if (opt==null || opt.output==null) return cb(new PluginError(PLUGIN_NAME, 'Config empty'));
 
-        opt.FLEX_HOME = path.resolve(opt.FLEX_HOME);
+        var binPath = flexsdk.bin.mxmlc;
+
+        if(opt.hasOwnProperty("FLEX_HOME")){
+            opt.FLEX_HOME = path.resolve(opt.FLEX_HOME);
+        }else{
+            opt.FLEX_HOME = path.resolve(flexsdk.FLEX_HOME);
+        }
+
         opt.PROJECT_HOME = path.resolve(opt.PROJECT_HOME);
 
         var req = [
-            '"'+path.join(opt.FLEX_HOME,'/bin/mxmlc.exe')+'"',
+            '"'+binPath+'"',
             file.path
         ];
-
 
         if (opt.libraryDirectory !== null && opt.libraryDirectory.length>0){
             for (var i= 0,cnt=opt.libraryDirectory.length;i<cnt;i++){
@@ -79,6 +86,7 @@ module.exports = function (opt){
          });
 
         cb(null,outFile);
+
     };
 
 
