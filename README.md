@@ -12,7 +12,6 @@ $ npm install [-g] gulp-flbuild
 ```javascript
 {
     PROJECT_HOME:'./',
-    FLEX_HOME:'C:\\Adobe Flash sdks\\4.6.0',
     sourceDirectory:'$PROJECT_HOME/src',
     libraryDirectory:[
         '$PROJECT_HOME/libs/'
@@ -21,10 +20,10 @@ $ npm install [-g] gulp-flbuild
         '-static-link-runtime-shared-libraries=true',
         '-debug='+param_debug,
         '-define=CONFIG::debug,'+param_debug,
-        '-link-report ./out/player.xml',
-        '-size-report ./out/player.size.xml'
+        '-link-report ./out/module.xml',
+        '-size-report ./out/module.size.xml'
     ],
-    output:'$PROJECT_HOME/out/letplayer.swf'
+    output:'$PROJECT_HOME/out/module.swf'
 }
 ```
 - PROJECT_HOME - параметр путь до папки проект, обязательный
@@ -42,7 +41,6 @@ gulp.task('player-swf-prodaction',function (){
     var param_debug = debug;
     var swf_conf = {
         PROJECT_HOME:'./',
-        FLEX_HOME:'C:\\Adobe Flash sdks\\4.6.0',
         sourceDirectory:'$PROJECT_HOME/src',
         libraryDirectory:[
             '$PROJECT_HOME/libs/'
@@ -51,13 +49,13 @@ gulp.task('player-swf-prodaction',function (){
             '-static-link-runtime-shared-libraries=true',
             '-debug='+param_debug,
             '-define=CONFIG::debug,'+param_debug,
-            '-link-report ./out/player.xml',
-            '-size-report ./out/player.size.xml'
+            '-link-report ./out/module.xml',
+            '-size-report ./out/module.size.xml'
         ],
-        output:'$PROJECT_HOME/out/letplayer.swf'
+        output:'$PROJECT_HOME/out/module.swf'
     }
 
-    return gulp.src('./player/src/PLayer.as')
+    return gulp.src('./project/src/Main.as')
         .pipe(flbuild(swf_conf));
 });
 ```
